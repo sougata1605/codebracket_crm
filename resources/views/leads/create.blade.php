@@ -8,9 +8,9 @@
     <div class="col-md-8">
 
         <div class="card shadow-sm">
-            <div class="card-header bg-white">
-                <h5 class="mb-0">
-                    <center> Lead Entry Form </center>
+            <div class="card-header" style="background-color: #ff6666; color: #fff;">
+                <h5 class="mb-0 text-center">
+                    Lead Entry Form
                 </h5>
             </div>
 
@@ -65,7 +65,6 @@
 
                     <div class="mb-3">
                         <label class="form-label">Lead Given Date *</label>
-
                         <input
                             type="date"
                             name="lead_given_date"
@@ -83,8 +82,8 @@
                         </select>
                     </div>
 
-                    <div class="text-end">
-                        <button class="btn btn-primary">
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-primary px-5">
                             Save Lead
                         </button>
                     </div>

@@ -5,9 +5,12 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header">
-        <h5>Lead Listing</h5>
-    </div>
+    <div class="card-header" style="background-color: #ff6666; color: #fff;">
+                <h5 class="mb-0 text-center">
+                    Lead List
+                </h5>
+            </div>
+
 
     <div class="card-body">
 
