@@ -4,7 +4,8 @@
 
 @section('content')
 
-<h4 class="mb-4">Welcome back 👋</h4>
+
+<h4 id="dynamicGreeting" class="mb-4">Welcome back 👋</h4>
 
 <div class="row mb-4">
 
@@ -84,3 +85,17 @@
 </div>
 
 @endsection
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const element = document.getElementById('dynamicGreeting');
+    const greetings = ["Welcome back 👋", "Clapping 👏", "Bye Bye 👋"];
+    let index = 0;
+
+    setInterval(function() {
+        element.textContent = greetings[index];
+        index = (index + 1) % greetings.length;
+    }, 1000);
+});
+</script>
