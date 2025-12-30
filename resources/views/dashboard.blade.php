@@ -14,7 +14,7 @@
 <div class="row mb-4">
 
     <div class="col-md-3">
-        <div class="card text-white" style="background:#75f075">
+        <div class="card text-white" style="background:#006600">
             <div class="card-body">
                 <h6>Total Leads</h6>
                 <h3>{{ $totalLeads }}</h3>
