@@ -1,15 +1,17 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LeadController;
-use App\Https\Controllers\DashboardController;
+use App\Http\Controllers\DashboardController;
 
 Route::redirect('/', '/login');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
+
     Route::resource('leads', LeadController::class);
 
     Route::prefix('profile')->name('profile.')->group(function () {
@@ -20,3 +22,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
