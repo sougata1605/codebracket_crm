@@ -1,0 +1,21 @@
+<?php
+
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LeadController;
+
+Route::redirect('/', '/login');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::resource('leads', LeadController::class);
+
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
+    });
+});
+
+require __DIR__ . '/auth.php';
