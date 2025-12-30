@@ -28,25 +28,26 @@
             <hr>
 
             <li class="nav-item">
-                <a href="{{ route('leads.index', ['status' => 'Follow Up']) }}"
+                <a href="{{ route('leads.followup') }}"
                    class="nav-link text-dark">
                     <i class="fa-solid fa-phone-volume me-2"></i>Follow Up
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('leads.index', ['status' => 'Closed']) }}"
-                   class="nav-link text-dark">
+                <a href="{{ route('leads.Converted') }}"
+                   class="nav-link text-success">
                     <i class="fa-solid fa-thumbs-up me-2"></i>Converted Leads
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('leads.index', ['status' => 'Not Interested']) }}"
-                   class="nav-link text-dark">
-                    <i class="fa-solid fa-circle-xmark me-2 text-danger"></i>Not Interested
-                </a>
-            </li>
+    <a href="{{ route('leads.not_interested') }}"
+       class="nav-link text-dark">
+        <i class="fa-solid fa-circle-xmark me-2 text-danger"></i>
+        Not Interested
+    </a>
+</li>
         </ul>
 
         <div class="mt-auto border-top pt-3">

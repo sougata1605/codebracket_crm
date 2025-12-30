@@ -8,6 +8,7 @@ use App\Mail\LeadNotificationMail;
 use App\Mail\LeadAcknowledgementMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class LeadController extends Controller
 {
@@ -74,4 +75,82 @@ class LeadController extends Controller
 
         return view('leads.index', compact('leads', 'users', 'assignedUsers'));
     }
+
+
+    public function notInterested()
+    {
+        $leads = DB::table('lead_follow_ups')
+            ->join('leads', 'lead_follow_ups.lead_id', '=', 'leads.id')
+            ->where('lead_follow_ups.status', 'Not Interested')
+            ->select(
+                'leads.name',
+                'leads.phone',
+                'leads.enquiry_for',
+                'leads.assigned_user',
+                'leads.lead_type',
+                'lead_follow_ups.status as followup_status',
+                'lead_follow_ups.follow_up_date'
+            )
+            ->orderBy('lead_follow_ups.follow_up_date', 'desc')
+            ->get();
+
+        return view('not_interested', compact('leads'));
+    }
+
+
+     function Converted()
+     {
+        $leads = DB::table('lead_follow_ups')
+            ->join('leads', 'lead_follow_ups.lead_id', '=', 'leads.id')
+            ->where('lead_follow_ups.status', 'Converted')
+            ->select(
+                'leads.name',
+                'leads.phone',
+                'leads.enquiry_for',
+                'leads.assigned_user',
+                'leads.lead_type',
+                'lead_follow_ups.status as followup_status',
+                'lead_follow_ups.follow_up_date'
+            )
+            ->orderBy('lead_follow_ups.follow_up_date', 'desc')
+            ->get();
+
+        return view('Converted', compact('leads'));
+     }
+
+
+
+function followup(){
+
+$leads = DB::table('lead_follow_ups')
+            ->join('leads', 'lead_follow_ups.lead_id', '=', 'leads.id')
+            ->where('lead_follow_ups.status', 'In Progress')
+            ->select(
+                'leads.name',
+                'leads.phone',
+                'leads.enquiry_for',
+                'leads.assigned_user',
+                'leads.lead_type',
+                'lead_follow_ups.status as followup_status',
+                'lead_follow_ups.follow_up_date'
+            )
+            ->orderBy('lead_follow_ups.follow_up_date', 'desc')
+            ->get();
+
+        return view('followup', compact('leads'));
+
+
+
+
+
+    
+}
+
+
+
+
+
+
+
+
 }

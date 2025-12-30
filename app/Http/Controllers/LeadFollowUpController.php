@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace App\Http\Controllers;
@@ -11,22 +11,20 @@ class LeadFollowUpController extends Controller
 {
     public function store(Request $request, Lead $lead)
     {
-        $validated = $request->validate([
-            'note' => 'required|string',
-            'calling_type' => 'required|array',
-            'status' => 'required|in:In Progress,Not Interested,Converted',
-            'follow_up_date' => 'nullable|date',
+        $request->validate([
+            'calling_type' => 'required',
+            'status' => 'required',
+            'note' => 'required',
         ]);
 
-        foreach($validated['calling_type'] as $type) {
-            $lead->activities()->create([
-                'calling_type' => $type,
-                'note' => $validated['note'],
-                'status' => $validated['status'],
-                'follow_up_date' => $validated['follow_up_date'] ?? now(),
-            ]);
-        }
+        LeadFollowUp::create([
+            'lead_id' => $lead->id,
+            'calling_type' => $request->calling_type,
+            'status' => $request->status,
+            'note' => $request->note,
+            'follow_up_date' => $request->follow_up_date ?? $request->follow_up_datetime,
+        ]);
 
-        return back()->with('success','Follow-up added successfully');
+        return back()->with('success', 'Follow-up saved');
     }
 }
