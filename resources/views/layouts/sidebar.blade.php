@@ -1,6 +1,6 @@
 <div class="d-flex">
     <div class="bg-warning text-dark vh-100 p-3 d-flex flex-column" style="width:250px;">
-        <h5 class="mb-4 fw-bold">Lead Panel</h5>
+        <h5 class="mb-4 fw-bold">Admin  Panel</h5>
 
         <ul class="nav nav-pills flex-column gap-2 flex-grow-1">
 
