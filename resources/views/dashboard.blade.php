@@ -109,27 +109,19 @@ $coldPct = round(($coldLeads / $total) * 100, 1);
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const element = document.getElementById('dynamicGreeting');
 
+document.addEventListener("DOMContentLoaded", function() {
+    const element = document.getElementById('dynamicGreeting');
+    const greetings = ["Hello  👋", "Clapping 👏", "Bye Bye 👋"];
 
-        const greetings = [
-            "Hello 👋",
-            "Hi there 😊",
-            "Hey! 👋",
-            "Welcome 😊",
-            "Good to see you 👀",
-            "Howdy 🤠",
-            "What’s up! 😄",
-            "Yo! 👋"
-        ];
-        let index = 0;
+    
+    let index = 0;
 
-        setInterval(function() {
-            element.textContent = greetings[index];
-            index = (index + 1) % greetings.length;
-        }, 1000);
-    });
+    setInterval(function() {
+        element.textContent = greetings[index];
+        index = (index + 1) % greetings.length;
+    }, 1000);
+});
 
 
     const ctx = document.getElementById('leadChart').getContext('2d');
@@ -142,19 +134,7 @@ $coldPct = round(($coldLeads / $total) * 100, 1);
                 'Cold ({{ $coldPct }}%)'
             ],
             datasets: [{
-                data: [{
-                    {
-                        $hotLeads
-                    }
-                }, {
-                    {
-                        $warmLeads
-                    }
-                }, {
-                    {
-                        $coldLeads
-                    }
-                }],
+                data: [{{ $hotLeads }}, {{ $warmLeads }}, {{ $coldLeads }}],
                 backgroundColor: ['#e74c3c', '#f1c40f', '#3498db'],
                 borderWidth: 0
             }]
