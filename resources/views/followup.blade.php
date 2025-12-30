@@ -4,8 +4,8 @@
 
 @section('content')
 
-<h4 class="mb-4 text-success fw-bold">
-    <i class="fa-solid fa-thumbs-up me-2"></i>
+<h4 class="mb-4 text-dark fw-bold">
+    <i class="fa-solid fa-phone-volume me-2"></i>
     FollowUp  Leads
 </h4>
 
