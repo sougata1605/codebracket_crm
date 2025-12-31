@@ -52,8 +52,9 @@ class LeadController extends Controller
 
 
 
-    public function store(Request $request)
+public function store(Request $request)
 {
+    // 1️⃣ Validate input
     $validated = $request->validate([
         'name'            => 'required|string|max:255',
         'email'           => 'required|email|max:255',
@@ -66,29 +67,20 @@ class LeadController extends Controller
         'assigned_user'   => 'nullable|in:CRE,DSE',
     ]);
 
+    
     $lead = Lead::create($validated);
 
     
-    Mail::to('chatterjee2014@gmail.com')
-        ->send(new LeadNotificationMail($lead));
-
-    Mail::to($lead->email)
-        ->send(new LeadAcknowledgementMail($lead));
+    Mail::to('chatterjee2014@gmail.com')->send(new LeadNotificationMail($lead));
+    Mail::to($lead->email)->send(new LeadAcknowledgementMail($lead));
 
     
-    $twilio = new Client(env('TWILIO_SID'), env('TWILIO_AUTH_TOKEN'));
-
-    $phoneNumber = '+91' . $lead->phone; 
+    $phoneNumber = '+91' . $lead->phone;
     $messageBody = "Hello {$lead->name}, your enquiry has been received. We will contact you soon.";
 
-    $twilio->messages->create(
-        "whatsapp:{$phoneNumber}",
-        [
-            'from' => env('TWILIO_WHATSAPP_FROM'),
-            'body' => $messageBody,
-        ]
-    );
+    sendWhatsapp($phoneNumber, $messageBody);
 
+    
     return redirect()
         ->route('leads.index')
         ->with('success', 'Lead saved successfully, emails and WhatsApp message sent');
