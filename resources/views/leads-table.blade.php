@@ -21,8 +21,8 @@
                 <td>{{ \Carbon\Carbon::parse($lead->lead_given_date)->format('d M Y') }}</td>
                 <td>
                     <button class="btn btn-sm btn-info"
-                            data-bs-toggle="modal"
-                            data-bs-target="#lead{{ $lead->id }}">
+                        data-bs-toggle="modal"
+                        data-bs-target="#lead{{ $lead->id }}">
                         <i class="fa-solid fa-eye"></i>
                     </button>
                 </td>
@@ -42,18 +42,35 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
 
-            <div class="modal-header">
-                <h5 class="modal-title">Lead Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title w-100 text-center fw-bold">
+                    Lead Details
+                </h5>
+                <button type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
 
                 <table class="table table-bordered mb-4">
-                    <tr><th>Name</th><td>{{ $lead->name }}</td></tr>
-                    <tr><th>Phone</th><td>{{ $lead->phone }}</td></tr>
-                    <tr><th>Enquiry</th><td>{{ $lead->enquiry_for ?? '-' }}</td></tr>
-                    <tr><th>Assigned</th><td>{{ $lead->assigned_user }}</td></tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ $lead->name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{ $lead->phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Enquiry</th>
+                        <td>{{ $lead->enquiry_for ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Assigned</th>
+                        <td>{{ $lead->assigned_user }}</td>
+                    </tr>
                 </table>
 
                 <form method="POST" action="{{ route('lead-follow-ups.store', $lead->id) }}">
@@ -64,28 +81,28 @@
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input calling-type"
-                                   type="radio"
-                                   name="calling_type"
-                                   value="Call Done"
-                                   data-require-date="no" required>
+                                type="radio"
+                                name="calling_type"
+                                value="Call Done"
+                                data-require-date="no" required>
                             <label class="form-check-label">Call Done</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input calling-type"
-                                   type="radio"
-                                   name="calling_type"
-                                   value="Follow Up"
-                                   data-require-date="date" required>
+                                type="radio"
+                                name="calling_type"
+                                value="Follow Up"
+                                data-require-date="date" required>
                             <label class="form-check-label">Follow Up</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input calling-type"
-                                   type="radio"
-                                   name="calling_type"
-                                   value="Visit"
-                                   data-require-date="datetime" required>
+                                type="radio"
+                                name="calling_type"
+                                value="Visit"
+                                data-require-date="datetime" required>
                             <label class="form-check-label">Visit</label>
                         </div>
                     </div>
@@ -127,22 +144,22 @@
 @endforeach
 
 <script>
-document.addEventListener('change', function (e) {
-    if (!e.target.classList.contains('calling-type')) return;
+    document.addEventListener('change', function(e) {
+        if (!e.target.classList.contains('calling-type')) return;
 
-    const modal = e.target.closest('.modal-body');
+        const modal = e.target.closest('.modal-body');
 
-    modal.querySelector('.followup-date').classList.add('d-none');
-    modal.querySelector('.followup-datetime').classList.add('d-none');
+        modal.querySelector('.followup-date').classList.add('d-none');
+        modal.querySelector('.followup-datetime').classList.add('d-none');
 
-    const type = e.target.dataset.requireDate;
+        const type = e.target.dataset.requireDate;
 
-    if (type === 'date') {
-        modal.querySelector('.followup-date').classList.remove('d-none');
-    }
+        if (type === 'date') {
+            modal.querySelector('.followup-date').classList.remove('d-none');
+        }
 
-    if (type === 'datetime') {
-        modal.querySelector('.followup-datetime').classList.remove('d-none');
-    }
-});
+        if (type === 'datetime') {
+            modal.querySelector('.followup-datetime').classList.remove('d-none');
+        }
+    });
 </script>
