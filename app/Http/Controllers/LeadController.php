@@ -62,6 +62,9 @@ class LeadController extends Controller
     {
         $query = Lead::query();
 
+
+    
+
         if ($request->filled('name')) {
             $query->where('name', 'like', '%' . $request->name . '%');
         }

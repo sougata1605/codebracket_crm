@@ -28,8 +28,11 @@ class Lead extends Model
 
     public function followUps()
     {
-        return $this->hasMany(\App\Models\LeadFollowUp::class);
+        return $this->hasMany(LeadFollowUp::class);
     }
+
+
+   
 
     public function activities()
     {

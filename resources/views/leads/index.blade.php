@@ -39,11 +39,6 @@
                 </select>
             </div>
 
-
-
-
-
-
             <div class="col-md-12 mt-2">
                 <button type="submit" class="btn btn-primary">Filter</button>
                 <a href="{{ route('leads.index') }}" class="btn btn-secondary">Reset</a>
@@ -56,10 +51,11 @@
                 <thead class="table-light">
                     <tr>
                         <th>Name</th>
-                        <th>Email</th>
+                        
                         <th>Phone</th>
+                        <th>Enquiry For  </th>
                         <th>Lead Type</th>
-                        <th>Status</th>
+                        <th> Lead Status </th>
                         <th>Date</th>
                         <th>Assigned</th>
                     </tr>
