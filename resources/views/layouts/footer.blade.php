@@ -1,4 +1,4 @@
-<footer class="bg-black text-center py-3 mt-5 border-top">
+<footer class="bg-black text-center py-3 border-top">
     <small class="fw-bold text-warning" id="istClock">
         © Codebrackets CRM. All rights reserved.
     </small>
