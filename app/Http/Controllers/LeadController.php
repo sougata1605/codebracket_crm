@@ -20,71 +20,43 @@ class LeadController extends Controller
     }
 
 
-    // public function store(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'name'            => 'required|string|max:255',
-    //         'email'           => 'required|email|max:255',
-    //         'phone'           => 'required|digits:10',
-    //         'enquiry_for'     => 'nullable|string|max:255',
-    //         'address'         => 'nullable|string',
-    //         'lead_type'       => 'required|in:Hot,Warm,Cold',
-    //         'status'          => 'required|in:New,In Progress,Closed',
-    //         'lead_given_date' => 'required|date|after_or_equal:today',
-    //         'assigned_user'   => 'nullable|in:CRE,DSE',
-    //     ]);
-
-
-    //     $lead = Lead::create($validated);
-
-
-    //     Mail::to('chatterjee2014@gmail.com')
-    //         ->send(new LeadNotificationMail($lead));
-
-
-    //     Mail::to($lead->email)
-    //         ->send(new LeadAcknowledgementMail($lead));
-
-    //     return redirect()
-    //         ->route('leads.index')
-    //         ->with('success', 'Lead saved successfully and emails sent');
-    // }
 
 
 
-public function store(Request $request)
-{
-    // 1️⃣ Validate input
-    $validated = $request->validate([
-        'name'            => 'required|string|max:255',
-        'email'           => 'required|email|max:255',
-        'phone'           => 'required|digits:10',
-        'enquiry_for'     => 'nullable|string|max:255',
-        'address'         => 'nullable|string',
-        'lead_type'       => 'required|in:Hot,Warm,Cold',
-        'status'          => 'required|in:New,In Progress,Closed',
-        'lead_given_date' => 'required|date|after_or_equal:today',
-        'assigned_user'   => 'nullable|in:CRE,DSE',
-    ]);
 
-    
-    $lead = Lead::create($validated);
+    public function store(Request $request)
+    {
 
-    
-    Mail::to('chatterjee2014@gmail.com')->send(new LeadNotificationMail($lead));
-    Mail::to($lead->email)->send(new LeadAcknowledgementMail($lead));
+        $validated = $request->validate([
+            'name'            => 'required|string|max:255',
+            'email'           => 'required|email|max:255',
+            'phone'           => 'required|digits:10',
+            'enquiry_for'     => 'nullable|string|max:255',
+            'address'         => 'nullable|string',
+            'lead_type'       => 'required|in:Hot,Warm,Cold',
+            'status'          => 'required|in:New,In Progress,Closed',
+            'lead_given_date' => 'required|date|after_or_equal:today',
+            'assigned_user'   => 'nullable|in:CRE,DSE',
+        ]);
 
-    
-    $phoneNumber = '+91' . $lead->phone;
-    $messageBody = "Hello {$lead->name}, your enquiry has been received. We will contact you soon.";
 
-    sendWhatsapp($phoneNumber, $messageBody);
+        $lead = Lead::create($validated);
 
-    
-    return redirect()
-        ->route('leads.index')
-        ->with('success', 'Lead saved successfully, emails and WhatsApp message sent');
-}
+
+        Mail::to('chatterjee2014@gmail.com')->send(new LeadNotificationMail($lead));
+        Mail::to($lead->email)->send(new LeadAcknowledgementMail($lead));
+
+
+        $phoneNumber = '+91' . $lead->phone;
+        $messageBody = "Hello {$lead->name}, your enquiry has been received. We will contact you soon.";
+
+        sendWhatsapp($phoneNumber, $messageBody);
+
+
+        return redirect()
+            ->route('leads.index')
+            ->with('success', 'Lead saved successfully, emails and WhatsApp message sent');
+    }
 
     public function index(Request $request)
     {
@@ -109,10 +81,10 @@ public function store(Request $request)
 
         $leads = $query->paginate(100);
         $users = User::all();
-       
+
         $assignedUsers = Lead::whereNotNull('assigned_user')
-    ->distinct()
-    ->pluck('assigned_user');
+            ->distinct()
+            ->pluck('assigned_user');
 
         return view('leads.index', compact('leads', 'users', 'assignedUsers'));
     }
@@ -139,8 +111,8 @@ public function store(Request $request)
     }
 
 
-     function Converted()
-     {
+    function Converted()
+    {
         $leads = DB::table('lead_follow_ups')
             ->join('leads', 'lead_follow_ups.lead_id', '=', 'leads.id')
             ->where('lead_follow_ups.status', 'Converted')
@@ -157,13 +129,14 @@ public function store(Request $request)
             ->get();
 
         return view('Converted', compact('leads'));
-     }
+    }
 
 
 
-function followup(){
+    function followup()
+    {
 
-$leads = DB::table('lead_follow_ups')
+        $leads = DB::table('lead_follow_ups')
             ->join('leads', 'lead_follow_ups.lead_id', '=', 'leads.id')
             ->where('lead_follow_ups.status', 'In Progress')
             ->select(
@@ -179,19 +152,5 @@ $leads = DB::table('lead_follow_ups')
             ->get();
 
         return view('followup', compact('leads'));
-
-
-
-
-
-    
-}
-
-
-
-
-
-
-
-
+    }
 }

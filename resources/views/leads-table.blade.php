@@ -67,7 +67,7 @@
                                    type="radio"
                                    name="calling_type"
                                    value="Call Done"
-                                   data-require-date="no">
+                                   data-require-date="no" required>
                             <label class="form-check-label">Call Done</label>
                         </div>
 
@@ -76,7 +76,7 @@
                                    type="radio"
                                    name="calling_type"
                                    value="Follow Up"
-                                   data-require-date="date">
+                                   data-require-date="date" required>
                             <label class="form-check-label">Follow Up</label>
                         </div>
 
@@ -85,7 +85,7 @@
                                    type="radio"
                                    name="calling_type"
                                    value="Visit"
-                                   data-require-date="datetime">
+                                   data-require-date="datetime" required>
                             <label class="form-check-label">Visit</label>
                         </div>
                     </div>
