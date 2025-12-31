@@ -9,6 +9,7 @@ use App\Mail\LeadAcknowledgementMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use Twilio\Rest\Client;
 
 class LeadController extends Controller
 {
@@ -19,35 +20,79 @@ class LeadController extends Controller
     }
 
 
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'name'            => 'required|string|max:255',
+    //         'email'           => 'required|email|max:255',
+    //         'phone'           => 'required|digits:10',
+    //         'enquiry_for'     => 'nullable|string|max:255',
+    //         'address'         => 'nullable|string',
+    //         'lead_type'       => 'required|in:Hot,Warm,Cold',
+    //         'status'          => 'required|in:New,In Progress,Closed',
+    //         'lead_given_date' => 'required|date|after_or_equal:today',
+    //         'assigned_user'   => 'nullable|in:CRE,DSE',
+    //     ]);
+
+
+    //     $lead = Lead::create($validated);
+
+
+    //     Mail::to('chatterjee2014@gmail.com')
+    //         ->send(new LeadNotificationMail($lead));
+
+
+    //     Mail::to($lead->email)
+    //         ->send(new LeadAcknowledgementMail($lead));
+
+    //     return redirect()
+    //         ->route('leads.index')
+    //         ->with('success', 'Lead saved successfully and emails sent');
+    // }
+
+
+
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'name'            => 'required|string|max:255',
-            'email'           => 'required|email|max:255',
-            'phone'           => 'required|digits:10',
-            'enquiry_for'     => 'nullable|string|max:255',
-            'address'         => 'nullable|string',
-            'lead_type'       => 'required|in:Hot,Warm,Cold',
-            'status'          => 'required|in:New,In Progress,Closed',
-            'lead_given_date' => 'required|date|after_or_equal:today',
-            'assigned_user'   => 'nullable|in:CRE,DSE',
-        ]);
+{
+    $validated = $request->validate([
+        'name'            => 'required|string|max:255',
+        'email'           => 'required|email|max:255',
+        'phone'           => 'required|digits:10',
+        'enquiry_for'     => 'nullable|string|max:255',
+        'address'         => 'nullable|string',
+        'lead_type'       => 'required|in:Hot,Warm,Cold',
+        'status'          => 'required|in:New,In Progress,Closed',
+        'lead_given_date' => 'required|date|after_or_equal:today',
+        'assigned_user'   => 'nullable|in:CRE,DSE',
+    ]);
 
+    $lead = Lead::create($validated);
 
-        $lead = Lead::create($validated);
+    
+    Mail::to('chatterjee2014@gmail.com')
+        ->send(new LeadNotificationMail($lead));
 
+    Mail::to($lead->email)
+        ->send(new LeadAcknowledgementMail($lead));
 
-        Mail::to('chatterjee2014@gmail.com')
-            ->send(new LeadNotificationMail($lead));
+    
+    $twilio = new Client(env('TWILIO_SID'), env('TWILIO_AUTH_TOKEN'));
 
+    $phoneNumber = '+91' . $lead->phone; 
+    $messageBody = "Hello {$lead->name}, your enquiry has been received. We will contact you soon.";
 
-        Mail::to($lead->email)
-            ->send(new LeadAcknowledgementMail($lead));
+    $twilio->messages->create(
+        "whatsapp:{$phoneNumber}",
+        [
+            'from' => env('TWILIO_WHATSAPP_FROM'),
+            'body' => $messageBody,
+        ]
+    );
 
-        return redirect()
-            ->route('leads.index')
-            ->with('success', 'Lead saved successfully and emails sent');
-    }
+    return redirect()
+        ->route('leads.index')
+        ->with('success', 'Lead saved successfully, emails and WhatsApp message sent');
+}
 
     public function index(Request $request)
     {
