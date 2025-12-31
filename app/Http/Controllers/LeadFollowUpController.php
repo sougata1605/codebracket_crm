@@ -15,15 +15,24 @@ class LeadFollowUpController extends Controller
             'calling_type' => 'required',
             'status' => 'required',
             'note' => 'required',
+            'follow_up_date' => 'nullable|date',
         ]);
 
-        LeadFollowUp::create([
-            'lead_id' => $lead->id,
+        $data = [
             'calling_type' => $request->calling_type,
             'status' => $request->status,
             'note' => $request->note,
-            'follow_up_date' => $request->follow_up_date ?? $request->follow_up_datetime,
-        ]);
+        ];
+
+
+        if ($request->filled('follow_up_date')) {
+            $data['follow_up_date'] = $request->follow_up_date;
+        }
+
+        LeadFollowUp::updateOrCreate(
+            ['lead_id' => $lead->id],
+            $data
+        );
 
         return back()->with('success', 'Follow-up saved');
     }

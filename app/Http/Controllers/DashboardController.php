@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         $todayLeads = Lead::select('id','name','phone','enquiry_for','assigned_user','lead_given_date')
             ->with('activities')
-            ->whereDate('lead_given_date', today())
+            ->whereDate('lead_given_date', Carbon::today())
             ->get();
 
         $tomorrowLeads = Lead::select('id','name','phone','enquiry_for','assigned_user','lead_given_date')

@@ -6,10 +6,10 @@
 
 <div class="card">
     <div class="card-header" style="background-color: #ff6666; color: #fff;">
-                <h5 class="mb-0 text-center">
-                    Lead List
-                </h5>
-            </div>
+        <h5 class="mb-0 text-center">
+            Lead List
+        </h5>
+    </div>
 
 
     <div class="card-body">
@@ -24,18 +24,26 @@
             <div class="col-md-3">
                 <input type="date" name="to_date" class="form-control" value="{{ request('to_date') }}">
             </div>
+
+
             <div class="col-md-2">
                 <select name="assigned_user" class="form-select">
                     <option value="">All Assigned</option>
-                    @foreach($assignedUsers as $assigned)
+
+                    @foreach ($assignedUsers as $assigned)
                     <option value="{{ $assigned }}"
-                        {{ request('assigned_user') == $assigned ? 'selected' : '' }}>
+                        {{ request('assigned_user') === $assigned ? 'selected' : '' }}>
                         {{ $assigned }}
                     </option>
                     @endforeach
-
                 </select>
             </div>
+
+
+
+
+
+
             <div class="col-md-12 mt-2">
                 <button type="submit" class="btn btn-primary">Filter</button>
                 <a href="{{ route('leads.index') }}" class="btn btn-secondary">Reset</a>
@@ -65,7 +73,7 @@
                         <td>{{ $lead->lead_type }}</td>
                         <td>{{ $lead->status }}</td>
                         <td>{{ \Carbon\Carbon::parse($lead->lead_given_date)->format('d M Y') }}</td>
-                         <td>{{ $lead->assigned_user }}</td>
+                        <td>{{ $lead->assigned_user }}</td>
                     </tr>
                     @empty
                     <tr>

@@ -11,7 +11,11 @@ class LeadFollowUp extends Model
         'note',
         'calling_type',
         'status',
-        'follow_up_date'
+        'follow_up_date',
+    ];
+
+    protected $casts = [
+        'follow_up_date' => 'datetime',
     ];
 
     public function lead()

@@ -1,6 +1,7 @@
 <table class="table table-sm table-bordered align-middle">
     <thead class="table-light">
         <tr>
+            <th>NO </th>
             <th>Name</th>
             <th>Phone</th>
             <th>Enquiry For</th>
@@ -13,6 +14,7 @@
     <tbody>
         @forelse($leads as $lead)
         <tr>
+            <td>{{ $lead->id }}</td>
             <td>{{ $lead->name }}</td>
             <td>{{ $lead->phone }}</td>
             <td>{{ $lead->enquiry_for ?? '-' }}</td>

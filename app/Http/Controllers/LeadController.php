@@ -69,9 +69,13 @@ class LeadController extends Controller
             $query->where('assigned_user', $request->assigned_user);
         }
 
+
         $leads = $query->paginate(100);
         $users = User::all();
-        $assignedUsers = Lead::distinct()->pluck('assigned_user');
+       
+        $assignedUsers = Lead::whereNotNull('assigned_user')
+    ->distinct()
+    ->pluck('assigned_user');
 
         return view('leads.index', compact('leads', 'users', 'assignedUsers'));
     }

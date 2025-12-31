@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\LeadActivity;
+use App\Models\LeadFollowUp;
 
 class Lead extends Model
 {
@@ -33,6 +33,6 @@ class Lead extends Model
 
     public function activities()
     {
-        return $this->hasMany(LeadActivity::class);
+        return $this->hasMany(LeadFollowUp::class);
     }
 }

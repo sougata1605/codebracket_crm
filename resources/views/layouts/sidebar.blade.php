@@ -32,7 +32,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('leads.followup') }}"
-                    class="nav-link text-dark">
+                    class="nav-link text-primary">
                     <i class="fa-solid fa-phone-volume me-2"></i>Follow Up
                 </a>
             </li>
