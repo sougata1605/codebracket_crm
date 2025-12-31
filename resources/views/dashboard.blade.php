@@ -73,7 +73,7 @@ $coldPct = round(($coldLeads / $total) * 100, 1);
                         <a class="nav-link active" data-bs-toggle="tab" href="#today">Today Leads</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tomorrow">Tomorrow Leads</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#tomorrow">Yesterday  Leads</a>
                     </li>
                 </ul>
 
