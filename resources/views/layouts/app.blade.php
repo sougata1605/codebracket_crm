@@ -30,6 +30,23 @@
       margin: 20px;
     }
 
+
+    .table-scroll {
+    max-height: 480px;  
+    overflow-y: auto;
+}
+
+.table-scroll thead th {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa;
+    z-index: 1;
+}
+
+
+
+
+
     .balloon {
       width: 20px;
       height: 30px;

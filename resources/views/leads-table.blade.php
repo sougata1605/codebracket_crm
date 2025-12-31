@@ -1,40 +1,40 @@
-<table class="table table-sm table-bordered align-middle">
-    <thead class="table-light">
-        <tr>
-            <!-- <th>NO </th> -->
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Enquiry For</th>
-            <th>Lead Given</th>
-            <th>Date</th>
-            <th>Action</th>
-        </tr>
-    </thead>
+<div class="table-responsive table-scroll">
+    <table class="table table-sm table-bordered align-middle mb-0">
+        <thead class="table-light sticky-top">
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Enquiry For</th>
+                <th>Lead Given</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        @forelse($leads as $lead)
-        <tr>
-            <!-- <td>{{ $lead->id }}</td> -->
-            <td>{{ $lead->name }}</td>
-            <td>{{ $lead->phone }}</td>
-            <td>{{ $lead->enquiry_for ?? '-' }}</td>
-            <td>{{ $lead->assigned_user }}</td>
-            <td>{{ \Carbon\Carbon::parse($lead->lead_given_date)->format('d M Y') }}</td>
-            <td>
-                <button class="btn btn-sm btn-info"
-                        data-bs-toggle="modal"
-                        data-bs-target="#lead{{ $lead->id }}">
-                    <i class="fa-solid fa-eye"></i>
-                </button>
-            </td>
-        </tr>
-        @empty
-        <tr>
-            <td colspan="6" class="text-center">No leads found</td>
-        </tr>
-        @endforelse
-    </tbody>
-</table>
+        <tbody>
+            @forelse($leads as $lead)
+            <tr>
+                <td>{{ $lead->name }}</td>
+                <td>{{ $lead->phone }}</td>
+                <td>{{ $lead->enquiry_for ?? '-' }}</td>
+                <td>{{ $lead->assigned_user }}</td>
+                <td>{{ \Carbon\Carbon::parse($lead->lead_given_date)->format('d M Y') }}</td>
+                <td>
+                    <button class="btn btn-sm btn-info"
+                            data-bs-toggle="modal"
+                            data-bs-target="#lead{{ $lead->id }}">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="6" class="text-center">No leads found</td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 
 {{-- MODALS --}}
 @foreach($leads as $lead)
