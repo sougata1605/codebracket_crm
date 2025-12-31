@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark px-4">
-    <span class="navbar-brand">Codebrackets</span>
+    <span class="navbar-brand">CodeBrackets</span>
 
 <div id="festivalGreeting" style="font-size: 0.9rem; color: #ff9800; font-weight: bold; margin-bottom:10px;"></div>
 <div id="balloons"></div>
