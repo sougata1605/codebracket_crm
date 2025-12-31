@@ -1,5 +1,5 @@
 <div class="d-flex">
-    <div class="bg-warning text-dark vh-100 p-3 d-flex flex-column" style="width:240px;">
+    <div class="bg-warning text-dark vh-100 p-3 d-flex flex-column" style="width:250px;">
        <h6 class="mb-3 fw-bold text-dark" id="locationWeather" style="font-size: 0.9rem;">
     Detecting location...
 </h6>
@@ -74,29 +74,4 @@
 </div>
 
 
-<script>
-fetch('https://ipapi.co/json/')
-    .then(res => res.json())
-    .then(loc => {
-        const city = loc.city;
-        const country = loc.country_name;
-        const lat = loc.latitude;
-        const lon = loc.longitude;
 
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
-            .then(res => res.json())
-            .then(weather => {
-                const temp = weather.current_weather.temperature;
-
-                document.getElementById('locationWeather').innerHTML =
-                    `<i class="fa-solid fa-location-dot text-danger me-1"></i>
-                     ${city}, ${country}
-                     <span class="ms-2 text-primary">
-                        <i class="fa-solid fa-temperature-half"></i> ${temp}°C
-                     </span>`;
-            });
-    })
-    .catch(() => {
-        document.getElementById('locationWeather').innerText = 'Location unavailable';
-    });
-</script>

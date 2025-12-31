@@ -110,18 +110,7 @@ $coldPct = round(($coldLeads / $total) * 100, 1);
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function() {
-    const element = document.getElementById('dynamicGreeting');
-    const greetings = ["Hello  👋", "Clapping 👏", "Bye Bye 👋"];
 
-    
-    let index = 0;
-
-    setInterval(function() {
-        element.textContent = greetings[index];
-        index = (index + 1) % greetings.length;
-    }, 1000);
-});
 
 
     const ctx = document.getElementById('leadChart').getContext('2d');
