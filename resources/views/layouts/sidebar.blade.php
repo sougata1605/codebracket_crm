@@ -1,5 +1,5 @@
 <div class="d-flex">
-    <div class="bg-warning text-dark vh-100 p-3 d-flex flex-column" style="width:250px;">
+    <div class="bg-warning text-dark vh-100 p-3 d-flex flex-column" style="width:240px;">
        <h6 class="mb-3 fw-bold text-dark" id="locationWeather" style="font-size: 0.9rem;">
     Detecting location...
 </h6>
