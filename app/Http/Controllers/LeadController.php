@@ -8,6 +8,7 @@ use App\Mail\LeadNotificationMail;
 use App\Mail\LeadAcknowledgementMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Twilio\Rest\Client;
 
@@ -20,10 +21,6 @@ class LeadController extends Controller
     }
 
 
-
-
-
-
     public function store(Request $request)
     {
 
@@ -31,8 +28,8 @@ class LeadController extends Controller
             'name'            => 'required|string|max:255',
             'email'           => 'required|email|max:255',
             'phone'           => 'required|digits:10',
-            'enquiry_for'     => 'nullable|string|max:255',
-            'address'         => 'nullable|string',
+            'enquiry_for'     => 'required|string|max:255',
+            'address'         => 'required|string',
             'lead_type'       => 'required|in:Hot,Warm,Cold',
             'status'          => 'required|in:New,In Progress,Closed',
             'lead_given_date' => 'required|date|after_or_equal:today',
@@ -41,9 +38,10 @@ class LeadController extends Controller
 
 
         $lead = Lead::create($validated);
+        $loginuser_emailid= Auth::user()->email;
 
 
-        Mail::to('chatterjee2014@gmail.com')->send(new LeadNotificationMail($lead));
+        Mail::to($loginuser_emailid)->send(new LeadNotificationMail($lead));
         Mail::to($lead->email)->send(new LeadAcknowledgementMail($lead));
 
 

@@ -15,52 +15,114 @@
             </div>
 
             <div class="card-body">
+
+                {{-- GLOBAL VALIDATION ERRORS --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form method="POST" action="{{ route('leads.store') }}">
                     @csrf
 
                     <div class="mb-3">
                         <label class="form-label">Name *</label>
-                        <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control @error('name') is-invalid @enderror"
+                            value="{{ old('name') }}"
+                        >
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Email *</label>
-                        <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control @error('email') is-invalid @enderror"
+                            value="{{ old('email') }}"
+                        >
+                        @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Phone *</label>
-                        <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" required>
+                        <input
+                            type="text"
+                            name="phone"
+                            class="form-control @error('phone') is-invalid @enderror"
+                            value="{{ old('phone') }}"
+                        >
+                        @error('phone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Enquiry For</label>
-                        <input type="text" name="enquiry_for" class="form-control" value="{{ old('enquiry_for') }}">
+                        <input
+                            type="text"
+                            name="enquiry_for"
+                            class="form-control @error('enquiry_for') is-invalid @enderror"
+                            value="{{ old('enquiry_for') }}"
+                        >
+                        @error('enquiry_for')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Address</label>
-                        <textarea name="address" class="form-control">{{ old('address') }}</textarea>
+                        <textarea
+                            name="address"
+                            class="form-control @error('address') is-invalid @enderror"
+                        >{{ old('address') }}</textarea>
+                        @error('address')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Lead Type *</label>
-                        <select name="lead_type" class="form-select" required>
+                        <select
+                            name="lead_type"
+                            class="form-select @error('lead_type') is-invalid @enderror"
+                        >
                             <option value="">Select</option>
-                            <option value="Hot">Hot</option>
-                            <option value="Warm">Warm</option>
-                            <option value="Cold">Cold</option>
+                            <option value="Hot" {{ old('lead_type') == 'Hot' ? 'selected' : '' }}>Hot</option>
+                            <option value="Warm" {{ old('lead_type') == 'Warm' ? 'selected' : '' }}>Warm</option>
+                            <option value="Cold" {{ old('lead_type') == 'Cold' ? 'selected' : '' }}>Cold</option>
                         </select>
+                        @error('lead_type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Status *</label>
-                        <select name="status" class="form-select" required>
+                        <select
+                            name="status"
+                            class="form-select @error('status') is-invalid @enderror"
+                        >
                             <option value="">Select</option>
-                            <option value="New">New</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Closed">Closed</option>
+                            <option value="New" {{ old('status') == 'New' ? 'selected' : '' }}>New</option>
+                            <option value="In Progress" {{ old('status') == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+                            <option value="Closed" {{ old('status') == 'Closed' ? 'selected' : '' }}>Closed</option>
                         </select>
+                        @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
@@ -68,18 +130,28 @@
                         <input
                             type="date"
                             name="lead_given_date"
-                            class="form-control"
+                            class="form-control @error('lead_given_date') is-invalid @enderror"
+                            value="{{ old('lead_given_date') }}"
                             min="{{ date('Y-m-d') }}"
-                            required>
+                        >
+                        @error('lead_given_date')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Assigned User (Optional)</label>
-                        <select name="assigned_user" class="form-select">
+                        <select
+                            name="assigned_user"
+                            class="form-select @error('assigned_user') is-invalid @enderror"
+                        >
                             <option value="">Select</option>
-                            <option value="CRE">CRE</option>
-                            <option value="DSE">DSE</option>
+                            <option value="CRE" {{ old('assigned_user') == 'CRE' ? 'selected' : '' }}>CRE</option>
+                            <option value="DSE" {{ old('assigned_user') == 'DSE' ? 'selected' : '' }}>DSE</option>
                         </select>
+                        @error('assigned_user')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="d-flex justify-content-center">
@@ -94,5 +166,6 @@
 
     </div>
 </div>
+
 
 @endsection
