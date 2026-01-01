@@ -57,6 +57,12 @@ $coldPct = round(($coldLeads / $total) * 100, 1);
 
 </div>
 
+@if (session('success'))
+    <div class="alert alert-success" id="success-alert">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="row">
 
     <div class="col-md-7">

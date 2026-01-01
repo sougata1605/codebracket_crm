@@ -91,3 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+setTimeout(() => {
+        const alert = document.getElementById('success-alert');
+        if (alert) alert.style.display = 'none';
+    }, 4000);
