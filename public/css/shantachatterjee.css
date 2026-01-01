@@ -47,6 +47,20 @@
 .table thead th {
     position: sticky;
     top: 0;
-    background: #f8f9fa;
+    background: Olive;
+    color: antiquewhite;
     z-index: 1;
+}
+
+
+.sidebar {
+    background-color: Peru; 
+    color: #E5E7EB;
+}
+.sidebar a {
+    color: #E5E7EB;
+}
+.sidebar a:hover {
+    background-color: #FFD700;
+    color: white;
 }

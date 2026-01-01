@@ -16,7 +16,7 @@ $coldPct = round(($coldLeads / $total) * 100, 1);
 <div class="row mb-4">
 
     <div class="col-md-3">
-        <div class="card text-white" style="background:#006600">
+        <div class="card text-white" style="background:#2E8B57">
             <div class="card-body">
                 <h6>Total Leads</h6>
                 <h3>{{ $totalLeads }}</h3>
@@ -61,7 +61,7 @@ $coldPct = round(($coldLeads / $total) * 100, 1);
 
     <div class="col-md-7">
         <div class="card">
-            <div class="card-header" style="background-color: #28a745; color: #fff;">
+            <div class="card-header" style="background-color: Olive; color: #fff;">
                 <h5 class="mb-0 text-center">
                     Leads
                 </h5>
@@ -92,7 +92,7 @@ $coldPct = round(($coldLeads / $total) * 100, 1);
 
     <div class="col-md-5">
         <div class="card">
-            <div class="card-header" style="background-color: #28a745; color: #fff;">
+            <div class="card-header" style="background-color: Olive; color: #fff;">
                 <h5 class="mb-0 text-center">
                     Leads Distribution
                 </h5>
