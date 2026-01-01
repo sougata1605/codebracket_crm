@@ -51,7 +51,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('leads.not_interested') }}"
-                    class="nav-link text-dark">
+                    class="nav-link text-danger">
                     <i class="fa-solid fa-circle-xmark me-2 text-danger"></i>
                     Not Interested
                 </a>
