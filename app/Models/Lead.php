@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Models;
-
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\LeadFollowUp;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Lead extends Model
 {
@@ -32,6 +33,20 @@ class Lead extends Model
     }
 
 
+     protected function name(): Attribute
+    {
+        return Attribute::make(
+            set: fn ($value) => ucfirst($value),
+        );
+    }
+
+
+    protected function enquiryFor(): Attribute
+{
+    return Attribute::make(
+        set: fn ($value) => ucfirst($value),
+    );
+}
    
 
     public function activities()
