@@ -19,38 +19,6 @@ document.addEventListener('change', function(e) {
 
 
 
-
-
-
-
-    fetch('https://ipapi.co/json/')
-    .then(res => res.json())
-    .then(loc => {
-        const city = loc.city;
-        const country = loc.country_name;
-        const lat = loc.latitude;
-        const lon = loc.longitude;
-
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
-            .then(res => res.json())
-            .then(weather => {
-                const temp = weather.current_weather.temperature;
-
-                document.getElementById('locationWeather').innerHTML =
-                    `<i class="fa-solid fa-location-dot text-danger me-1"></i>
-                     ${city}, ${country}
-                     <span class="ms-2 text-primary">
-                        <i class="fa-solid fa-temperature-half"></i> ${temp}°C
-                     </span>`;
-            });
-    })
-    .catch(() => {
-        document.getElementById('locationWeather').innerText = 'Location unavailable';
-    });
-
-
-
-
     function getISTDate() {
   const now = new Date();
   const istOffset = 5.5 * 60; 
@@ -123,27 +91,3 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-   fetch('https://ipapi.co/json/')
-    .then(res => res.json())
-    .then(loc => {
-        const city = loc.city;
-        const country = loc.country_name;
-        const lat = loc.latitude;
-        const lon = loc.longitude;
-
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
-            .then(res => res.json())
-            .then(weather => {
-                const temp = weather.current_weather.temperature;
-
-                document.getElementById('locationWeather').innerHTML =
-                    `<i class="fa-solid fa-location-dot text-danger me-1"></i>
-                     ${city}, ${country}
-                     <span class="ms-2 text-primary">
-                        <i class="fa-solid fa-temperature-half"></i> ${temp}°C
-                     </span>`;
-            });
-    })
-    .catch(() => {
-        document.getElementById('locationWeather').innerText = 'Location unavailable';
-    });

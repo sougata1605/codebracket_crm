@@ -6,16 +6,13 @@ use App\Http\Controllers\LeadController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadFollowUpController;
 
+
 Route::redirect('/', '/login');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
-
-
-
-
 
     Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
     Route::get('/leads/create', [LeadController::class, 'create'])->name('leads.create');
@@ -25,18 +22,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/leads/{lead}', [LeadController::class, 'destroy'])->name('leads.destroy');
 
 
-
-
     Route::get('/leads/not-interested', [LeadController::class, 'notInterested'])->name('leads.not_interested');
     Route::get('/leads/Converted', [LeadController::class, 'Converted'])->name('leads.Converted');
     Route::get('/leads/followup', [LeadController::class, 'followup'])->name('leads.followup');
-
-
-
-
-
-
-
 
     Route::post('lead-follow-ups/{lead}', [LeadFollowUpController::class, 'store'])->name('lead-follow-ups.store');
 

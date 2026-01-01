@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Lead;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+
+           
         $totalLeads = Lead::count();
 
         $weeklyLeads = Lead::whereBetween('created_at', [
@@ -39,4 +43,9 @@ class DashboardController extends Controller
             'tomorrowLeads'
         ));
     }
+
+
+
+
+  
 }

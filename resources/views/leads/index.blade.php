@@ -45,17 +45,15 @@
             </div>
         </form>
 
-
-        <div class="table-responsive">
+        <div class="table-responsive" style="max-height: 700px; overflow-y: auto;">
             <table class="table table-bordered table-hover mb-0">
                 <thead class="table-light">
                     <tr>
                         <th>Name</th>
-                        
                         <th>Phone</th>
-                        <th>Enquiry For  </th>
+                        <th>Enquiry For</th>
                         <th>Lead Type</th>
-                        <th> Lead Status </th>
+                        <th>Lead Status</th>
                         <th>Date</th>
                         <th>Assigned</th>
                     </tr>
@@ -73,12 +71,13 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center">No leads found</td>
+                        <td colspan="7" class="text-center">No leads found</td>
                     </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
 
