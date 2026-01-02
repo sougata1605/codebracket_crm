@@ -25,7 +25,7 @@
         $coldPct = round(($coldLeads / $total) * 100, 1);
         @endphp
 
-        <!-- KPI Cards -->
+        
         <div class="row mb-4 g-3">
             <div class="col-md-3">
                 <div class="card shadow-sm kpi-card" style="background: linear-gradient(45deg, #2e8b57, #3cb371);">
@@ -80,10 +80,10 @@
             </div>
         </div>
 
-        <!-- Leads Table and Charts -->
+        
         <div class="row g-4">
 
-            <!-- Today's Leads Table -->
+            
             <div class="col-md-6">
                 <div class="card shadow-sm">
                     <div class="card-header card-header-custom text-center">
@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <!-- Hot/Warm/Cold Pie Chart -->
+            
             <div class="col-md-3">
                 <div class="card shadow-sm">
                     <div class="card-header card-header-custom text-center">
@@ -149,7 +149,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-    // Hot/Warm/Cold Chart
+    
     const leadTypeCtx = document.getElementById('leadTypeChart').getContext('2d');
     new Chart(leadTypeCtx, {
         type: 'doughnut',
