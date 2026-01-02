@@ -50,7 +50,7 @@ class FrontendController extends Controller
         
         $followUpLeadsChartData = [
             'Converted' => $latestFollowUps['Converted'] ?? 0,
-            'Interested' => $latestFollowUps['In Progress'] ?? 0,
+            'In Progress' => $latestFollowUps['In Progress'] ?? 0,
             'Not Interested' => $latestFollowUps['Not Interested'] ?? 0,
         ];
 
