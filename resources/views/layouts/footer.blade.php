@@ -1,8 +1,11 @@
-<footer class="bg-black text-center py-3 border-top">
-    <small class="fw-bold text-warning" id="istClock">
+
+<footer class="bg-black text-center py-3 border-top text-warning" 
+        style="position: fixed; bottom: 0; width: 100%; z-index: 1000;">
+    <small class="fw-bold" id="istClock">
         © Codebrackets CRM. All rights reserved.
     </small>
 </footer>
+
 
 <script>
 function updateISTClock() {
@@ -21,10 +24,11 @@ function updateISTClock() {
     };
 
     document.getElementById('istClock').innerHTML =
-        '© ' + new Intl.DateTimeFormat('en-IN', options).format(now) +
+        new Intl.DateTimeFormat('en-IN', options).format(now) +
         ' | Codebrackets CRM. All rights reserved.';
 }
 
 updateISTClock();
 setInterval(updateISTClock, 1000);
 </script>
+

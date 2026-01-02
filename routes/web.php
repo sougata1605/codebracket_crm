@@ -5,9 +5,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeadFollowUpController;
+use App\Http\Controllers\FrontendController;
 
 
-Route::redirect('/', '/login');
+
+
+
+Route::get('/', [FrontendController::class, 'dashboard'])
+    ->name('frontend.dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 

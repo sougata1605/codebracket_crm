@@ -1,0 +1,28 @@
+ .kpi-card {
+            border-radius: 15px;
+            color: #fff;
+            transition: transform 0.2s;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+        .kpi-icon {
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+
+        /* Table */
+        .table-striped > tbody > tr:nth-of-type(odd) {
+            background-color: #f8f9fa;
+        }
+        .table thead {
+            background-color: #2e8b57;
+            color: #fff;
+        }
+
+        /* Card headers */
+        .card-header-custom {
+            background-color: #2e8b57;
+            color: #fff;
+            font-weight: 600;
+        }
