@@ -53,7 +53,7 @@ class LeadController extends Controller
 
         return redirect()
             ->route('leads.index')
-            ->with('success', 'Lead saved successfully, emails and WhatsApp message sent');
+            ->with('success', 'Lead saved successfully, emails  message sent');
     }
 
     public function index(Request $request)
