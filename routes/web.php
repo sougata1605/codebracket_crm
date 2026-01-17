@@ -9,6 +9,18 @@ use App\Http\Controllers\FrontendController;
 
 
 
+use App\Http\Controllers\InterviewFeedbackController;
+
+Route::get('/feedback-form', function () {
+    return view('feedback_form');
+});
+
+Route::post('/schedule-feedback-emails', [InterviewFeedbackController::class, 'scheduleEmails']);
+
+
+
+
+
 
 
 Route::get('/', [FrontendController::class, 'dashboard'])
